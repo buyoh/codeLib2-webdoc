@@ -1,6 +1,6 @@
 
 $enable_cart = false
-$codelib_path ||= '../codelib2'
+$codelib_path ||= '../codeLib2'
 
 require 'sinatra'
 require 'sinatra/reloader' if development?
@@ -54,6 +54,6 @@ end
 
 
 Dir.glob('controller/*.rb') do |c|
-  load c
+  load c, true
 end
 
