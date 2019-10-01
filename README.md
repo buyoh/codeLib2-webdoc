@@ -13,4 +13,9 @@
 
 ## 実行
 
-- `bundle exec ruby webdoc.rb`
+- run by sinatra
+  - `bundle exec ruby webdoc.rb`
+- run by unicorn
+  - `bundle exec unicorn -c unicorn.rb -E production -D`
+
+  
