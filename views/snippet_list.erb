@@ -8,6 +8,11 @@
       <div class="path"><%= doc[:path] %></div>
       <div class="keyword">keyword: <%= doc[:words] %></div>
     </div>
+    <% if doc[:date] %>
+    <div class="right">
+      <div class="datetime"><%= doc[:date].strftime("%Y-%m-%d %H:%M") %></div>
+    </div>
+    <% end %>
     <% if $enable_cart %>
     <div class="right">
       <% if include_cart(@cart, id) %>

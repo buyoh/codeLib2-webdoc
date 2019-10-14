@@ -6,6 +6,7 @@ get '/view/:id' do
   @doc = $sqldb.find_db_by_index(id)
   redirect "/", 404 unless @doc
   @id = id
+  @commit = $sqldb.get_gitcommit(@doc[:commitId]) if @doc[:commitId]
   @enable_replacepath = true
   erb :view
 end
@@ -17,5 +18,6 @@ get '/view/src/*' do
   @doc = $sqldb.find_db_by_path(path)
   redirect "/", 404 unless @doc
   @id = @doc[:id]
+  @commit = $sqldb.get_gitcommit(@doc[:commitId]) if @doc[:commitId]
   erb :view
 end
