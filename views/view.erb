@@ -69,3 +69,9 @@ addEventListener("load", function(){history.replaceState(null, "", "<%= @doc[:pa
 
 <h2>code</h2>
 <textarea class="display" rows="30"><%= @doc[:code] %></textarea>
+
+
+<% if @commit %>
+<h2>last commit</h2>
+<div>[<%= @commit[:sha][0..7] %>](<%= @commit[:date].strftime("%Y-%m-%d %H:%M") %>) <%= @commit[:message] %></div>
+<% end %>

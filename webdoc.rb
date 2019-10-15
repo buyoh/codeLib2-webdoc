@@ -1,6 +1,7 @@
 
 $enable_cart = false
 $codelib_path ||= '../codeLib2'
+$version = `git log --oneline -n 1 --pretty=format:'%h(%cd)'`.chomp
 
 require 'sinatra'
 require 'sinatra/reloader' if development?
