@@ -2,7 +2,7 @@
 # codelib2-webdoc
 
 - sinatraによる雑な整理ツールを作っています
-- http://codelib.ukibune.blue に同様のものがあります
+- http://codelib.ukibune.net に同様のものがあります
 
 ## setup
 
