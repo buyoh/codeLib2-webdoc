@@ -10,9 +10,8 @@ require 'json'
 require 'uri'
 require 'logger'
 
-require $codelib_path + '/tools/dbhelper/dbhelper'
-require $codelib_path + '/tools/dbhelper/collector'
-require $codelib_path + '/tools/dbhelper/dbsolver'
+require_relative 'lib/dbhelper'
+require_relative 'lib/dbsolver'
 
 $sqldb = DBHelper.new
 

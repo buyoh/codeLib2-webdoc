@@ -42,7 +42,7 @@ get '/cart' do
 end
 
 before do
-  @cart = get_cart
+  @cart = get_cart if $enable_cart
 end
 
 get '/cart/add/:id' do # TODO: なんでこれGETなんですか？
