@@ -1,14 +1,11 @@
-if $enable_cart
-
-
-def init_cart()
-  set_cookie('cart', '{"i":[]}', 3600*3)
-  return {'i'=>[]}
+def init_cart
+  set_cookie('cart', '{"i":[]}', 3600 * 3)
+  {'i' => []}
 end
 
-def get_cart()
+def get_cart
   cart = get_cookie('cart')
-  cart = init_cart() if cart.nil?
+  cart = init_cart if cart.nil?
   cart
 end
 
@@ -19,7 +16,6 @@ end
 def include_cart(cart, id)
   cart['i'].include?(id)
 end
-
 
 get '/cart' do
   @docs = []
@@ -39,17 +35,15 @@ get '/cart' do
     set_cart(@cart)
   end
 
-  solved = DBSolver.solve_paths($sqldb, @cart['i'].map{|id| DBSolver.id_to_path($sqldb, id)})
+  solved = DBSolver.solve_paths($sqldb, @cart['i'].map { |id| DBSolver.id_to_path($sqldb, id)})
   @gen_code = DBSolver.generate_merged_code(solved[:path_sequence], solved[:docs])
 
   erb :cart
 end
 
-
 before do
-  @cart = get_cart()
+  @cart = get_cart
 end
-
 
 get '/cart/add/:id' do # TODO: なんでこれGETなんですか？
   redirect '/', 303 unless params[:id]
@@ -59,18 +53,14 @@ get '/cart/add/:id' do # TODO: なんでこれGETなんですか？
   redirect '/', 303
 end
 
-
 get '/cart/rem/:id' do # TODO: なんでこれGETなんですか？
   redirect '/', 303 unless params[:id]
   id = params[:id].to_i
-  if id < 0
-    @cart['i'] = []
-  else
-    @cart['i'] = @cart['i'] - [id]
-  end
+  @cart['i'] = if id < 0
+                 []
+               else
+                 @cart['i'] - [id]
+               end
   set_cart(@cart)
   redirect '/', 303
-end
-
-
 end
